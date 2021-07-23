@@ -1,0 +1,13 @@
+name: Movie Match
+description: This Pluign attempts to find movie titles from a scenes path an match it to an entry from adultdvdempire
+version: 0.1
+url: https://github.com/stg-annon/CommunityScripts/tree/main/plugins/findMovie
+exec:
+  - python
+  - "{pluginDir}/movie_scrape.py"
+interface: raw
+tasks:
+  - name: Movie Search
+    description: search for movies from scenes with find_movie_match
+    defaultArgs:
+      mode: movie_search
