@@ -51,13 +51,21 @@ def find_or_create_tag(client):
 
 def movie_search(client, control_tag_id):
 
-	scenes = client.find_scenes(filter={
-		"is_missing": "movie",
-		"tags": {
-			"value": [control_tag_id],
-			"modifier": "INCLUDES"
-		}
-	})
+	scenes = []
+
+	try:
+		scenes = client.find_scenes(filter={
+			"is_missing": "movie",
+			"tags": {
+				"value": [control_tag_id],
+				"modifier": "INCLUDES"
+			}
+		})
+	except Exception as e:
+		log.error('Could not "find_scenes"')
+		log.error(json.dumps(control_tag_id))
+		log.error(str(e))
+
 
 	total = len(scenes)
 
