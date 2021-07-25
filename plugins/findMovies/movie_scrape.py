@@ -27,6 +27,7 @@ def run(json_input, output):
 		control_tag_id = find_or_create_tag(client)
 		
 		if mode_arg == "movie_search":
+			log.info('Running Movie Search...')
 			movie_search(client, control_tag_id)
 
 	except Exception:
