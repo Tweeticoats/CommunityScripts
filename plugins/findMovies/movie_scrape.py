@@ -104,7 +104,13 @@ def movie_search(client, control_tag_id):
 			'movies': [ {'movie_id':movie_id, 'scene_index':None} ]
 		}
 
-		client.update_scene_overwrite(scene_update_input)
+		# Update scene
+		try:
+			client.update_scene_overwrite(scene_update_input)
+		except Exception as e:
+			log.error('Error updating scene')
+			log.error(json.dumps(scene_update_input))
+			log.error(str(e))
 
 
 def extract_parent_path(path, target):
