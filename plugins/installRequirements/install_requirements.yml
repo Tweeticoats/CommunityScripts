@@ -1,0 +1,12 @@
+name: PIP Intstall Requirements
+description: will use pip to install all requirements from any requirements.txt file it finds THIS IS A VERY BAD IDEA but it works so ¯\_(ツ)_/¯
+version: 0.1
+exec:
+  - python
+  - "{pluginDir}/install_python_requirements.py"
+interface: raw
+tasks:
+  - name: PIP INSTALL
+    description: ONLY RUN THIS IF YOU TRUST EVERYTHING IN YOUR PLUGINS DIR
+    defaultArgs:
+      mode: install
