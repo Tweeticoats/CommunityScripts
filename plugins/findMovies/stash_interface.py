@@ -217,7 +217,7 @@ class StashInterface:
 
 
     def find_movie(self, movie):
-        movies = self.find_movies(movie)
+        movies = self.find_movies(q=movie.get('name'))
         for m in movies:
             if movie.get('name') and m.get('name') and movie['name'] == m['name']:
                 return m
