@@ -58,7 +58,7 @@ def movie_search(client, control_tag_id):
     scenes = []
 
     try:
-        scenes = client.find_scenes(filter={
+        scenes = client.find_scenes(f={
             "is_missing": "movie",
             "tags": {
                 "value": [control_tag_id],
