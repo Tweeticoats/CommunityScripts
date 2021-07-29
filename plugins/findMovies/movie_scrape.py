@@ -10,7 +10,7 @@ import data18
 import hotmovies
 
 CONTROL_TAG = "find_movie_match"
-PATH_TEMPLATE = '<moviefolder>\\<scenefolder>\\<file>.mp4'
+PATH_TEMPLATE = '<moviefolder>/<scene>/<file>.mp4'
 
 def main():
     json_input = json.loads(sys.stdin.read())
@@ -126,16 +126,25 @@ def movie_search(client, control_tag_id):
 
 
 def extract_parent_path(path, target):
-    ex_list = PATH_TEMPLATE.split('\\')
+    delim  = "\\"
+    if "/" in path:
+      delim = "/"
+
+    ex_list = PATH_TEMPLATE.split("/")
     ex_list.reverse()
     movie_fldr_idx = (ex_list.index(target))
-    return '\\'.join(path.split('\\')[:-movie_fldr_idx])
+    return delim.join(path.split(delim)[:-movie_fldr_idx])
 
 def extract_dirname(path, target):
-    ex_list = PATH_TEMPLATE.split('\\')
+    delim  = "\\"
+    if "/" in path:
+      delim = "/"
+
+    ex_list = PATH_TEMPLATE.split("/")
     ex_list.reverse()
     movie_fldr_idx = (ex_list.index(target)+1)
-    return path.split('\\')[-movie_fldr_idx]
+    log.debug(f'IDX:{movie_fldr_idx} from {path}')
+    return path.split(delim)[-movie_fldr_idx]
 
 def match_results(parse_data, hits):
 
